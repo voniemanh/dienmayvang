@@ -22,7 +22,7 @@ function Navbar({ currentUser, setCurrentUser }) {
         {currentUser ? (
           <>
             <span>Hello, {currentUser.username} | </span>
-            <span style={{ cursor: 'pointer', color: 'blue' }} onClick={handleLogout}>Logout</span>
+            <span style={{ cursor: 'pointer', color: 'grey' }} onClick={handleLogout}>Logout</span>
           </>
         ) : (
           <Link to="/login">Login</Link>
