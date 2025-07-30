@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCT_URL } from '../../config';
 import axios from 'axios';
+
+function applyFilters(data, search, category) {
+  const keyword = search.toLowerCase();
+  return data.filter(p =>
+    (p.name.toLowerCase().includes(keyword) ||
+     p.category.toLowerCase().includes(keyword) ||
+     p.price.toString().includes(keyword) ||
+     p.stock.toString().includes(keyword)) &&
+    (category === 'Tất cả' || p.category === category)
+  );
+}
 
 function ProductsManage() {
   const [products, setProducts] = useState([]);
@@ -9,23 +20,28 @@ function ProductsManage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortAsc, setSortAsc] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('Tất cả');
-
-  const loadProducts = React.useCallback(async () => {
-    try {
-      const res = await axios.get(PRODUCT_URL);
-      setProducts(res.data);
-      setFilteredProducts(applyFilters(res.data, searchTerm, selectedCategory));
-    } catch (error) {
-      console.error("Lỗi khi tải danh sách sản phẩm:", error);
-    }
-  }, [searchTerm, selectedCategory]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+      alert('Bạn cần đăng nhập để truy cập');
+      navigate('/login');
+      return;
+    }
+
+    axios.get(PRODUCT_URL)
+      .then(res => {
+        setProducts(res.data);
+        setFilteredProducts(applyFilters(res.data, searchTerm, selectedCategory));
+      })
+      .catch(error => console.error("Lỗi khi tải danh sách sản phẩm:", error))
+      .finally(() => setLoading(false));
+  }, []);
 
   const handleSearch = (e) => {
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value;
     setSearchTerm(value);
     setFilteredProducts(applyFilters(products, value, selectedCategory));
   };
@@ -45,16 +61,6 @@ function ProductsManage() {
     setFilteredProducts(applyFilters(products, searchTerm, cat));
   };
 
-  const applyFilters = (data, search, category) => {
-    return data.filter(p =>
-      (p.name.toLowerCase().includes(search) ||
-        p.category.toLowerCase().includes(search) ||
-        p.price.toString().includes(search) ||
-        p.stock.toString().includes(search)) &&
-      (category === 'Tất cả' || p.category === category)
-    );
-  };
-
   const handleDelete = async (id) => {
     if (window.confirm("Bạn có chắc muốn xoá sản phẩm này không?")) {
       try {
@@ -70,14 +76,16 @@ function ProductsManage() {
 
   const uniqueCategories = ['Tất cả', ...new Set(products.map(p => p.category))];
 
+  if (loading) return null;
+
   return (
     <div className='container'>
       <div className='left-content'>
         <p>Danh mục</p>
         <ul>
-          {uniqueCategories.map((cat, index) => (
+          {uniqueCategories.map((cat, idx) => (
             <li
-              key={index}
+              key={idx}
               style={{ cursor: 'pointer', fontWeight: cat === selectedCategory ? 'bold' : 'normal' }}
               onClick={() => handleFilterByCategory(cat)}
             >

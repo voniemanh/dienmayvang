@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { USER_URL, PRODUCT_URL, CUSTOMER_URL } from '../config';
 import '../App.css';
 
@@ -8,12 +8,38 @@ function HomePage() {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(USER_URL).then(res => setUsers(res.data)).catch(console.error);
-    axios.get(PRODUCT_URL).then(res => setProducts(res.data)).catch(console.error);
-    axios.get(CUSTOMER_URL).then(res => setCustomers(res.data)).catch(console.error);
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+      alert('Bạn cần đăng nhập để truy cập');
+      navigate('/login');
+      return;
+    }
+
+    const fetchData = async () => {
+      try {
+        const [userRes, productRes, customerRes] = await Promise.all([
+          axios.get(USER_URL),
+          axios.get(PRODUCT_URL),
+          axios.get(CUSTOMER_URL),
+        ]);
+        setUsers(userRes.data);
+        setProducts(productRes.data);
+        setCustomers(customerRes.data);
+      } catch (error) {
+        console.error("Lỗi khi tải dữ liệu:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  if (loading) return null;
 
   const topUser = users.reduce((a, b) => a.performanceScore > b.performanceScore ? a : b, users[0]);
   const topProduct = products[0];

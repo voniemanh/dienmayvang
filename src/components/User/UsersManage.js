@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { USER_URL } from '../../config';
 import axios from 'axios';
+
+function applyFilters(data, search, dept) {
+  const keyword = search.toLowerCase();
+  return data.filter(u =>
+    (u.name.toLowerCase().includes(keyword) ||
+     u.department.toLowerCase().includes(keyword) ||
+     u.role.toLowerCase().includes(keyword) ||
+     u.performanceScore.toString().includes(keyword)) &&
+    (dept === 'Tất cả' || u.department === dept)
+  );
+}
 
 function UsersManage() {
   const [users, setUsers] = useState([]);
@@ -9,30 +20,37 @@ function UsersManage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortAsc, setSortAsc] = useState(true);
   const [selectedDepartment, setSelectedDepartment] = useState('Tất cả');
-
-  const loadUsers = React.useCallback(async () => {
-    try {
-      const res = await axios.get(USER_URL);
-      setUsers(res.data);
-      setFilteredUsers(applyFilters(res.data, searchTerm, selectedDepartment));
-    } catch (error) {
-      console.error("Lỗi khi tải danh sách người dùng:", error);
-    }
-  }, [searchTerm, selectedDepartment]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    loadUsers();
-  }, [loadUsers]);
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+      alert('Bạn cần đăng nhập để truy cập');
+      navigate('/login');
+      return;
+    }
+
+    axios.get(USER_URL)
+      .then(res => {
+        setUsers(res.data);
+        setFilteredUsers(applyFilters(res.data, searchTerm, selectedDepartment));
+      })
+      .catch(error => console.error("Lỗi khi tải danh sách người dùng:", error))
+      .finally(() => setLoading(false));
+  }, []);
 
   const handleSearch = (e) => {
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value;
     setSearchTerm(value);
     setFilteredUsers(applyFilters(users, value, selectedDepartment));
   };
 
   const handleSort = () => {
     const sorted = [...filteredUsers].sort((a, b) =>
-      sortAsc ? a.performanceScore - b.performanceScore : b.performanceScore - a.performanceScore
+      sortAsc
+        ? a.performanceScore - b.performanceScore
+        : b.performanceScore - a.performanceScore
     );
     setFilteredUsers(sorted);
     setSortAsc(!sortAsc);
@@ -41,16 +59,6 @@ function UsersManage() {
   const handleFilterByDepartment = (dept) => {
     setSelectedDepartment(dept);
     setFilteredUsers(applyFilters(users, searchTerm, dept));
-  };
-
-  const applyFilters = (data, search, dept) => {
-    return data.filter(u =>
-      (u.name.toLowerCase().includes(search) ||
-        u.department.toLowerCase().includes(search) ||
-        u.role.toLowerCase().includes(search) ||
-        u.performanceScore.toString().includes(search)) &&
-      (dept === 'Tất cả' || u.department === dept)
-    );
   };
 
   const handleDelete = async (id) => {
@@ -68,14 +76,16 @@ function UsersManage() {
 
   const uniqueDepartments = ['Tất cả', ...new Set(users.map(u => u.department))];
 
+  if (loading) return null;
+
   return (
     <div className='container'>
       <div className='left-content'>
         <p>Danh sách phòng ban</p>
         <ul>
-          {uniqueDepartments.map((dept, index) => (
+          {uniqueDepartments.map((dept, idx) => (
             <li
-              key={index}
+              key={idx}
               style={{ cursor: 'pointer', fontWeight: dept === selectedDepartment ? 'bold' : 'normal' }}
               onClick={() => handleFilterByDepartment(dept)}
             >
