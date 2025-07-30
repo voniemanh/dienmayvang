@@ -15,7 +15,7 @@ import CustomerDetail from './components/Customer/CustomerDetail';
 import UserAdd from './components/User/UserAdd';
 import UserEdit from './components/User/UserEdit';
 import UserDetail from './components/User/UserDetail';
-import Navbar from './Navbar';
+import Navbar from './components/NavBar/Navbar';
 import './App.css';
 
 function App() {
