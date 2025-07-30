@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+// src/App.js
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -15,28 +16,27 @@ import CustomerDetail from './components/Customer/CustomerDetail';
 import UserAdd from './components/User/UserAdd';
 import UserEdit from './components/User/UserEdit';
 import UserDetail from './components/User/UserDetail';
+import Navbar from './Navbar';
 import './App.css';
 
-
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   return (
     <div className='app'>
-      <nav className='navbar'>
-        <div className='left'>
-          <Link to="/">Home |</Link>
-          <Link to="/user-mng">Quản lí người dùng |</Link>
-          <Link to="/product-mng">Quản lí sản phẩm |</Link>
-          <Link to="/customer-mng">Quản lí khách</Link>
-        </div>
-        <div className='right'>
-          <span>Logout</span>
-        </div>
-      </nav>
+      <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
 
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user-mng" element={<UsersManage />} />
           <Route path="/user-mng/add" element={<UserAdd />} />

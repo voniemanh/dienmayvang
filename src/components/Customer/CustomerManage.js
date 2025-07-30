@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CUSTOMER_URL } from '../../config';
 import axios from 'axios';
 
@@ -25,14 +25,24 @@ function CustomerManage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortAsc, setSortAsc] = useState(true);
   const [selectedCity, setSelectedCity] = useState('Tất cả');
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+      alert('Bạn cần đăng nhập để truy cập');
+      navigate('/login');
+      return;
+    }
+
     axios.get(CUSTOMER_URL)
       .then(res => {
         setCustomers(res.data);
         setFilteredCustomers(applyFilters(res.data, searchTerm, selectedCity));
       })
-      .catch(error => console.error("Lỗi khi tải danh sách khách hàng:", error));
+      .catch(error => console.error("Lỗi khi tải danh sách khách hàng:", error))
+      .finally(() => setLoading(false));
   }, []);
 
   const handleSearch = (e) => {
@@ -70,6 +80,8 @@ function CustomerManage() {
   };
 
   const uniqueCities = ['Tất cả', ...new Set(customers.map(c => extractCity(c.address)))];
+
+  if (loading) return null; // hoặc <p>Đang kiểm tra đăng nhập...</p>;
 
   return (
     <div className='container'>

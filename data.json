@@ -102,9 +102,27 @@
       "role": "Nhà nghiên cứu",
       "performanceScore": 8.5,
       "reviews": []
+    },
+    {
+      "id": "9",
+      "name": "Ngô Thanh H",
+      "username": "ngothanhh",
+      "password": "h123456",
+      "department": "Kỹ thuật",
+      "role": "DevOps",
+      "performanceScore": 9.1,
+      "reviews": []
     }
   ],
   "products": [
+    {
+      "id": "P001",
+      "name": "Laptop XYZ Pro",
+      "category": "Điện tử",
+      "price": 25000000,
+      "stock": 15,
+      "createdAt": "2024-06-01T08:00:00.000Z"
+    },
     {
       "id": "P002",
       "name": "Điện thoại Smart X",
@@ -152,15 +170,55 @@
       "price": 12000000,
       "stock": 10,
       "createdAt": "2024-07-10T08:00:00.000Z"
+    },
+    {
+      "id": "P008",
+      "name": "iPad Air 2024",
+      "category": "Máy tính bảng",
+      "price": 18000000,
+      "stock": 25,
+      "createdAt": "2024-07-12T11:00:00.000Z"
+    },
+    {
+      "id": "P009",
+      "name": "Loa Bluetooth JBL",
+      "category": "Âm thanh",
+      "price": 2000000,
+      "stock": 35,
+      "createdAt": "2024-07-15T08:00:00.000Z"
+    },
+    {
+      "id": "P010",
+      "name": "Camera giám sát Xiaomi",
+      "category": "An ninh",
+      "price": 1000000,
+      "stock": 20,
+      "createdAt": "2024-07-18T09:30:00.000Z"
     }
   ],
   "customers": [
+    {
+      "id": "C001",
+      "name": "Nguyễn Văn A",
+      "email": "nguyenvana@example.com",
+      "phone": "0901234567",
+      "address": "123 Lê Lợi, Q.1, TP.HCM",
+      "createdAt": "2024-05-10T10:00:00.000Z"
+    },
+    {
+      "id": "C002",
+      "name": "Trần Thị B",
+      "email": "tranthib@example.com",
+      "phone": "0902345678",
+      "address": "56 Nguyễn Huệ, TP. Đà Nẵng",
+      "createdAt": "2024-06-20T11:30:00.000Z"
+    },
     {
       "id": "C003",
       "name": "Lê Văn C",
       "email": "levanc@example.com",
       "phone": "0903456789",
-      "address": "789 Nguyễn Trãi, Q.Hoàn Kiếm, Hà Nội",
+      "address": "789 Lê Duẩn, TP. Buôn Ma Thuột, Đắk Lắk",
       "createdAt": "2024-06-25T14:00:00.000Z"
     },
     {
@@ -168,7 +226,7 @@
       "name": "Phạm Thị D",
       "email": "phamthid@example.com",
       "phone": "0904567890",
-      "address": "321 Lý Thường Kiệt, TP.Đà Nẵng",
+      "address": "23 Trần Phú, TP. Nha Trang, Khánh Hòa",
       "createdAt": "2024-07-01T09:30:00.000Z"
     },
     {
@@ -176,7 +234,7 @@
       "name": "Đỗ Minh E",
       "email": "domaine@example.com",
       "phone": "0905678901",
-      "address": "654 Nguyễn Huệ, TP.Huế",
+      "address": "654 Nguyễn Trãi, TP. Hà Nội",
       "createdAt": "2024-07-03T12:00:00.000Z"
     },
     {
@@ -184,7 +242,7 @@
       "name": "Ngô Thanh F",
       "email": "ngothanhf@example.com",
       "phone": "0906789012",
-      "address": "987 Trần Phú, TP.Nha Trang, Khánh Hòa",
+      "address": "87 Lý Thường Kiệt, TP. Huế",
       "createdAt": "2024-07-05T15:00:00.000Z"
     },
     {
@@ -192,7 +250,7 @@
       "name": "Bùi Thị G",
       "email": "buithig@example.com",
       "phone": "0907890123",
-      "address": "112 Lê Duẩn, TP.Buôn Ma Thuột, Đắk Lắk",
+      "address": "12 Võ Văn Tần, TP. Cần Thơ",
       "createdAt": "2024-07-07T08:30:00.000Z"
     },
     {
@@ -200,7 +258,7 @@
       "name": "Vũ Văn H",
       "email": "vuvanh@example.com",
       "phone": "0908901234",
-      "address": "213 Hùng Vương, TP.Cần Thơ",
+      "address": "19 Trần Hưng Đạo, TP. Vũng Tàu, Bà Rịa - Vũng Tàu",
       "createdAt": "2024-07-09T10:00:00.000Z"
     },
     {
@@ -208,7 +266,7 @@
       "name": "Trịnh Thị I",
       "email": "trinhthi@example.com",
       "phone": "0909012345",
-      "address": "314 Võ Nguyên Giáp, TP.Vũng Tàu, Bà Rịa - Vũng Tàu",
+      "address": "314 Tôn Đức Thắng, TP. Hải Phòng",
       "createdAt": "2024-07-11T13:30:00.000Z"
     },
     {
@@ -216,7 +274,7 @@
       "name": "Lý Mạnh K",
       "email": "lymanhk@example.com",
       "phone": "0910123456",
-      "address": "415 Nguyễn Tất Thành, TP.Rạch Giá, Kiên Giang",
+      "address": "415 Hùng Vương, TP. Pleiku, Gia Lai",
       "createdAt": "2024-07-13T09:00:00.000Z"
     }
   ]

@@ -29,7 +29,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className='content-center'>
       <h1>Register</h1>
       <div>
         <input type="text" name="name" placeholder="Name" value={newUser.name} onChange={handleChange} />
