@@ -1,0 +1,223 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Phạm Minh Tuấn",
+      "username": "tuanpm",
+      "password": "tuan123",
+      "department": "Kỹ thuật",
+      "role": "Kỹ sư phần mềm",
+      "performanceScore": 8.9,
+      "reviews": [
+        {
+          "criteria": "Chất lượng công việc",
+          "score": 9,
+          "comment": "Hoàn thành đúng hạn, chất lượng cao",
+          "date": "2024-07-01T09:00:00.000Z",
+          "reviewer": "Trưởng phòng An"
+        },
+        {
+          "criteria": "Tinh thần làm việc nhóm",
+          "score": 8.5,
+          "comment": "Hợp tác tốt với đồng nghiệp",
+          "date": "2024-07-05T14:30:00.000Z",
+          "reviewer": "Trưởng nhóm Hùng"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Lê Thị Mai",
+      "username": "mailt",
+      "password": "mai123",
+      "department": "Nhân sự",
+      "role": "Chuyên viên tuyển dụng",
+      "performanceScore": 7.4,
+      "reviews": [
+        {
+          "criteria": "Tuyển dụng hiệu quả",
+          "score": 7,
+          "comment": "Cần cải thiện thời gian xử lý hồ sơ",
+          "date": "2024-06-25T10:00:00.000Z",
+          "reviewer": "Trưởng phòng Hương"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Nguyễn Văn B",
+      "username": "nguyenvb",
+      "password": "123456",
+      "department": "Marketing",
+      "role": "Chuyên viên nội dung",
+      "performanceScore": 8.2,
+      "reviews": []
+    },
+    {
+      "id": "4",
+      "name": "Trần Thị C",
+      "username": "tranthic",
+      "password": "abc123",
+      "department": "Kinh doanh",
+      "role": "Nhân viên kinh doanh",
+      "performanceScore": 6.5,
+      "reviews": []
+    },
+    {
+      "id": "5",
+      "name": "Hoàng Văn D",
+      "username": "hoangvd",
+      "password": "dpass123",
+      "department": "Kỹ thuật",
+      "role": "Tester",
+      "performanceScore": 7.8,
+      "reviews": []
+    },
+    {
+      "id": "6",
+      "name": "Phạm Thị E",
+      "username": "phame",
+      "password": "e12345",
+      "department": "Tài chính",
+      "role": "Kế toán",
+      "performanceScore": 7,
+      "reviews": []
+    },
+    {
+      "id": "7",
+      "name": "Vũ Minh F",
+      "username": "vumf",
+      "password": "vuminh123",
+      "department": "Hành chính",
+      "role": "Thư ký",
+      "performanceScore": 6.8,
+      "reviews": []
+    },
+    {
+      "id": "8",
+      "name": "Đỗ Ngọc G",
+      "username": "dongocg",
+      "password": "passg",
+      "department": "R&D",
+      "role": "Nhà nghiên cứu",
+      "performanceScore": 8.5,
+      "reviews": []
+    }
+  ],
+  "products": [
+    {
+      "id": "P002",
+      "name": "Điện thoại Smart X",
+      "category": "Điện tử",
+      "price": 15000000,
+      "stock": 30,
+      "createdAt": "2024-06-15T08:00:00.000Z"
+    },
+    {
+      "id": "P003",
+      "name": "Máy in Canon 2900",
+      "category": "Văn phòng",
+      "price": 3000000,
+      "stock": 12,
+      "createdAt": "2024-06-20T09:00:00.000Z"
+    },
+    {
+      "id": "P004",
+      "name": "Bàn phím cơ Razer",
+      "category": "Phụ kiện",
+      "price": 2500000,
+      "stock": 50,
+      "createdAt": "2024-07-01T08:00:00.000Z"
+    },
+    {
+      "id": "P005",
+      "name": "Chuột Logitech MX",
+      "category": "Phụ kiện",
+      "price": 1500000,
+      "stock": 40,
+      "createdAt": "2024-07-05T10:00:00.000Z"
+    },
+    {
+      "id": "P006",
+      "name": "Máy lạnh Panasonic",
+      "category": "Điện lạnh",
+      "price": 8000000,
+      "stock": 5,
+      "createdAt": "2024-06-28T09:00:00.000Z"
+    },
+    {
+      "id": "P007",
+      "name": "Tivi LG 55 inch",
+      "category": "Điện tử",
+      "price": 12000000,
+      "stock": 10,
+      "createdAt": "2024-07-10T08:00:00.000Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": "C003",
+      "name": "Lê Văn C",
+      "email": "levanc@example.com",
+      "phone": "0903456789",
+      "address": "789 Nguyễn Trãi, Q.Hoàn Kiếm, Hà Nội",
+      "createdAt": "2024-06-25T14:00:00.000Z"
+    },
+    {
+      "id": "C004",
+      "name": "Phạm Thị D",
+      "email": "phamthid@example.com",
+      "phone": "0904567890",
+      "address": "321 Lý Thường Kiệt, TP.Đà Nẵng",
+      "createdAt": "2024-07-01T09:30:00.000Z"
+    },
+    {
+      "id": "C005",
+      "name": "Đỗ Minh E",
+      "email": "domaine@example.com",
+      "phone": "0905678901",
+      "address": "654 Nguyễn Huệ, TP.Huế",
+      "createdAt": "2024-07-03T12:00:00.000Z"
+    },
+    {
+      "id": "C006",
+      "name": "Ngô Thanh F",
+      "email": "ngothanhf@example.com",
+      "phone": "0906789012",
+      "address": "987 Trần Phú, TP.Nha Trang, Khánh Hòa",
+      "createdAt": "2024-07-05T15:00:00.000Z"
+    },
+    {
+      "id": "C007",
+      "name": "Bùi Thị G",
+      "email": "buithig@example.com",
+      "phone": "0907890123",
+      "address": "112 Lê Duẩn, TP.Buôn Ma Thuột, Đắk Lắk",
+      "createdAt": "2024-07-07T08:30:00.000Z"
+    },
+    {
+      "id": "C008",
+      "name": "Vũ Văn H",
+      "email": "vuvanh@example.com",
+      "phone": "0908901234",
+      "address": "213 Hùng Vương, TP.Cần Thơ",
+      "createdAt": "2024-07-09T10:00:00.000Z"
+    },
+    {
+      "id": "C009",
+      "name": "Trịnh Thị I",
+      "email": "trinhthi@example.com",
+      "phone": "0909012345",
+      "address": "314 Võ Nguyên Giáp, TP.Vũng Tàu, Bà Rịa - Vũng Tàu",
+      "createdAt": "2024-07-11T13:30:00.000Z"
+    },
+    {
+      "id": "C010",
+      "name": "Lý Mạnh K",
+      "email": "lymanhk@example.com",
+      "phone": "0910123456",
+      "address": "415 Nguyễn Tất Thành, TP.Rạch Giá, Kiên Giang",
+      "createdAt": "2024-07-13T09:00:00.000Z"
+    }
+  ]
+}
